@@ -1,0 +1,40 @@
+﻿@model Formularze.Models.Rejestracja
+
+<h1>Formularz rejestracyjny</h1>
+
+@using (Html.BeginForm("Form", "Rejestracja", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <p>Imię: @Html.TextBoxFor(m => m.Imie)</p>
+    @Html.ValidationMessageFor(m => m.Imie)
+
+    <p>Nazwisko: @Html.TextBoxFor(m => m.Nazwisko)</p>
+    @Html.ValidationMessageFor(m => m.Nazwisko)
+
+    <p>Email: @Html.TextBoxFor(m => m.Email, new { type = "email" })</p>
+    @Html.ValidationMessageFor(m => m.Email)
+
+    <p>Hasło: @Html.PasswordFor(m => m.Haslo)</p>
+    @Html.ValidationMessageFor(m => m.Haslo)
+
+    <p>Potwierdź hasło: @Html.PasswordFor(m => m.PotwierdzHaslo)</p>
+    @Html.ValidationMessageFor(m => m.PotwierdzHaslo)
+
+    <p>Telefon: @Html.TextBoxFor(m => m.Telefon, new { type = "tel" })</p>
+    @Html.ValidationMessageFor(m => m.Telefon)
+
+    <p>Wiek: @Html.TextBoxFor(m => m.Wiek)</p>
+    @Html.ValidationMessageFor(m => m.Wiek)
+
+    <p>Miasto:</p>
+    <select asp-for="Miasto"
+            asp-items="Html.GetEnumSelectList<Formularze.Models.Rejestracja.Miasta>()">
+    </select>
+
+    <br />
+    <br />
+
+    <input type="submit" value="Zarejestruj" />
+    <input type="reset" value="Wyczyść" />
+}
